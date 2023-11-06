@@ -52,7 +52,9 @@ router.post("/login", async (req, res) => {
     const token = jwt.sign({
         userId: user.userId
     }, "customized_secret_key");
-    res.cookie("authorization", `Bearer ${token}`);
+    res.header('Access-Control-Expose-Headers', 'Authorization');
+    res.set("Authorization", `Bearer ${token}`);
+    console.log(res)
     return res.status(200).json({ message: "로그인 성공!" });
     
 });

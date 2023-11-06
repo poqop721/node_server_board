@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const { Users } = require("../models");
 
 module.exports = async (req, res, next) => {
-  console.log(req.headers);
+  console.log(req.headers.authorization);
   // const authorization = req.headers['authorization'];
   // if(!authorization) {
   //   return res.status(401).json({ error : 'No credentials sent!'});
@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
   // const token = authorization.split(' ')[1];
 
   try {
-    const { authorization } = req.cookies;
+    const authorization = req.headers.authorization;
     // console.log(req.cookies);
     const [tokenType, token] = authorization.split(" ");
     if (tokenType !== "Bearer") {

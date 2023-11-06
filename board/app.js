@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const postsRouter = require("./routes/posts");
 const commentsRouter = require("./routes/comments");
@@ -16,6 +17,14 @@ const port = 3000;
 
 // main();
 //cookie-parser 미들웨어
+
+let corsOptions = {
+    origin: "*", // 출처 허용 옵션
+    credential: true, // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
+  };
+
+app.use(cors(corsOptions));
+  
 app.use(cookieParser());
 
 app.use(express.json());
